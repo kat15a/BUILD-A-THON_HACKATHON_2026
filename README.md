@@ -7,7 +7,7 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-**Venti-Guard** is a high-fidelity, life-critical Human Machine Interface (HMI) for underground mining ventilation. Built for the ABB Accelerator Hackathon 2026, it serves as a central control and monitoring dashboard to rapidly identify, triage, and resolve atmospheric and mechanical emergencies deep underground.
+**Venti-Guard** is a high-fidelity, life-critical Human Machine Interface (HMI) for underground mining ventilation. Built for the BUILD-A-THON Hackathon 2026, it serves as a central control and monitoring dashboard to rapidly identify, triage, and resolve atmospheric and mechanical emergencies deep underground.
 
 ## ✨ Key Features
 
