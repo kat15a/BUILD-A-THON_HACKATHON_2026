@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: venti-guard
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install --include=dev && npm install --prefix server && npm run build
+    startCommand: node server/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      - key: MONGO_URI
+        sync: false

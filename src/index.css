@@ -1,0 +1,276 @@
+@import "tailwindcss";
+
+/* ──── Design Tokens ──────────────────────────────────────────── */
+:root {
+  --color-bg-primary: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-bg-tertiary: #334155;
+  --color-cyan-glow: #22d3ee;
+  --color-cyan-dim: #0e7490;
+  --color-green-safe: #4ade80;
+  --color-green-glow: #22c55e;
+  --color-red-danger: #ef4444;
+  --color-red-glow: #dc2626;
+  --color-purple-toxic: #a855f7;
+  --color-purple-glow: #9333ea;
+  --color-amber-warning: #f59e0b;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ──── Global Reset & Base ────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ──── Scrollbar Styling ──────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-bg-tertiary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ──── SVG Air Flow Animations ────────────────────────────────── */
+@keyframes airFlowNominal {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -40; }
+}
+
+@keyframes airFlowReverse {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 40; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 4px currentColor); }
+  50% { opacity: 1; filter: drop-shadow(0 0 12px currentColor); }
+}
+
+@keyframes pulseDanger {
+  0%, 100% {
+    stroke: #ef4444;
+    filter: drop-shadow(0 0 6px #ef4444);
+    opacity: 0.7;
+  }
+  50% {
+    stroke: #a855f7;
+    filter: drop-shadow(0 0 18px #a855f7);
+    opacity: 1;
+  }
+}
+
+@keyframes safePath {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -30; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes textGlitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, 1px); }
+}
+
+.air-flow-nominal {
+  stroke-dasharray: 8 12;
+  animation: airFlowNominal 1.2s linear infinite;
+}
+
+.air-flow-stopped {
+  stroke-dasharray: 4 8;
+  animation: pulseDanger 1s ease-in-out infinite;
+}
+
+.safe-path-line {
+  stroke-dasharray: 10 5;
+  animation: safePath 0.8s linear infinite;
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* ──── Alarm Banner Scanline Effect ───────────────────────────── */
+.alarm-scanline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.5), transparent);
+  animation: scanline 2s linear infinite;
+  pointer-events: none;
+}
+
+/* ──── Glitch Text Effect ─────────────────────────────────────── */
+.glitch-text {
+  animation: textGlitch 0.3s ease-in-out infinite;
+}
+
+/* ──── Glass Morphism Card ────────────────────────────────────── */
+.glass-card {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 12px;
+}
+
+.glass-card-bright {
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(34, 211, 238, 0.15);
+  border-radius: 12px;
+}
+
+/* ──── Monospace Data Display ─────────────────────────────────── */
+.data-value {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ──── Button Base ────────────────────────────────────────────── */
+.btn-danger {
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: scale(1.02);
+}
+
+.btn-danger:active {
+  transform: scale(0.98);
+}
+
+/* ──── Priority Badge Colours ─────────────────────────────────── */
+.badge-p1 {
+  background: #dc2626;
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.badge-p2 {
+  background: #f59e0b;
+  color: #000;
+  font-size: 0.6rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.badge-p3 {
+  background: #22d3ee;
+  color: #000;
+  font-size: 0.6rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* ──── Toast Slide-in ─────────────────────────────────────────── */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.toast-enter {
+  animation: toastIn 0.22s ease-out forwards;
+}
+
+/* ──── Status Indicator Dots ──────────────────────────────────── */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot-nominal {
+  background-color: var(--color-green-safe);
+  box-shadow: 0 0 8px var(--color-green-safe);
+}
+
+.status-dot-warning {
+  background-color: var(--color-amber-warning);
+  box-shadow: 0 0 8px var(--color-amber-warning);
+  animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+.status-dot-critical {
+  background-color: var(--color-red-danger);
+  box-shadow: 0 0 12px var(--color-red-danger);
+  animation: pulseGlow 0.6s ease-in-out infinite;
+}
+
+/* ──── Level Label Tags ───────────────────────────────────────── */
+.level-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid;
+}
