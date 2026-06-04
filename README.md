@@ -78,4 +78,4 @@ This project is configured out-of-the-box for a **single-service deployment** on
 Click the pulsing **🔀 RANDOM** button in the top navigation bar to inject a randomized mechanical or atmospheric fault into the system, allowing judges and users to experience the playbook resolution flow live.
 
 ---
-*Built for the ABB Accelerator Hackathon 2026*
+*Built for the BUILD-A-THON Hackathon 2026*
